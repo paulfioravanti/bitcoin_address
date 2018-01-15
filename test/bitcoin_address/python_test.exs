@@ -1,5 +1,5 @@
 defmodule BitcoinAddressPythonTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import ExUnit.CaptureIO
   alias BitcoinAddress.Secp256k1
   doctest BitcoinAddress.Python
