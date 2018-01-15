@@ -96,23 +96,22 @@ mix test.watch
 
 ### Blog Posts
 
-- [Controlling a Bitcoin Node in Elixir][]
 - [Using Python's Bitcoin libraries in Elixir][]
 - [Using C++ Bitcoin libraries in Elixir][]
 
-The latter two are blog posts I wrote documenting the things I needed to do
-to get Elixir communicating with Python and C++.
+These are blog posts I wrote documenting the things I needed to do to get
+Elixir communicating with Python and C++.
 
 ## Social
 
-[![Contact][twitter-badge]][twitter-url]<br />
+[![Contact][twitter-badge]][twitter-url]
+
 [![Stack Overflow][stackoverflow-badge]][stackoverflow-url]
 
 [asdf]: https://github.com/asdf-vm/asdf
 [Bitcoin address]: https://en.bitcoin.it/wiki/Address
 [`bitcoin-elixir`]: https://github.com/comboy/bitcoin-elixir
 [C++]: http://www.cplusplus.com/
-[Controlling a Bitcoin Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
 [Credo]: https://github.com/rrrene/credo
 [Cure]: https://github.com/luc-tielen/Cure
 [Dogma]: https://github.com/lpil/dogma
