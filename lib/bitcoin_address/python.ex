@@ -32,14 +32,16 @@ defmodule BitcoinAddress.Python do
   end
 
   defp create_bitcoin_public_key(pid, private_key) do
-    pid
-    |> Python.call(@python_file, "create_bitcoin_public_key", [private_key])
-    |> to_string()
+    call_python(pid, "create_bitcoin_public_key", [private_key])
   end
 
   defp create_bitcoin_address(pid, bitcoin_pub_key) do
+    call_python(pid, "bitcoin.pubkey_to_address", [bitcoin_pub_key])
+  end
+
+  defp call_python(pid, function, args) do
     pid
-    |> Python.call(@python_file, "bitcoin.pubkey_to_address", [bitcoin_pub_key])
+    |> Python.call(@python_file, function, args)
     |> to_string()
   end
 end

@@ -6,7 +6,7 @@ defmodule BitcoinAddress do
   alias BitcoinAddress.Secp256k1
 
   @doc """
-  Uses Elixir to generate a Bitcoin address.
+  Uses Elixir by default to generate a Bitcoin address.
 
   ## Parameters
 
