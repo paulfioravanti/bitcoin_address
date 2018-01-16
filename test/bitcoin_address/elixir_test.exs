@@ -6,14 +6,15 @@ defmodule BitcoinAddressElixirTest do
 
   describe "BitcoinAddress.Elixir" do
     setup(%{function: function, args: args})do
-      result =
-        capture_io(fn -> apply(BitcoinAddress.Elixir, function, args) end)
-      {:ok, [result: result]}
+      func = fn -> apply(BitcoinAddress.Elixir, function, args) end
+      output = capture_io(func)
+      result = func.()
+      {:ok, [output: output, result: result]}
     end
 
     @tag function: :generate, args: [Secp256k1.example_private_key]
-    test "generate(private_key)", %{result: result} do
-      expected =
+    test "generate(private_key)", %{output: output, result: result} do
+      expected_output =
         """
         Private key: \
         "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
@@ -21,12 +22,14 @@ defmodule BitcoinAddressElixirTest do
         "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
         Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
         """
-      assert result == expected
+      expected_result = "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+      assert output == expected_output
+      assert result == expected_result
     end
 
     @tag function: :generate, args: []
-    test "generate()", %{result: result} do
-      expected =
+    test "generate()", %{output: output, result: result} do
+      expected_output =
         """
         Private key: \
         "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
@@ -34,21 +37,26 @@ defmodule BitcoinAddressElixirTest do
         "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
         Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
         """
-      assert result == expected
+      expected_result = "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+      assert output == expected_output
+      assert result == expected_result
     end
 
     @tag function: :generate, args: [:random]
-    test "generate(:random)", %{result: result} do
+    test "generate(:random)", %{output: output, result: result} do
       # https://en.wikipedia.org/wiki/Base58
-      expected =
+      # https://en.bitcoin.it/wiki/Address
+      expected_output =
         ~r"""
         \A\
         Private key:\s"[0-9a-z]{64}"
         Public key:\s"[0-9a-z]{66}"
-        Address:\s"[1-9A-HJ-NP-Za-km-z]{34}"
+        Address:\s"[1-9A-HJ-NP-Za-km-z]{26,35}"
         \z\
         """
-      assert result =~ expected
+      expected_result = ~r/\A[1-9A-HJ-NP-Za-km-z]{26,35}\z/
+      assert output =~ expected_output
+      assert result =~ expected_result
     end
   end
 end
