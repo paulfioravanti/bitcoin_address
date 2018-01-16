@@ -46,24 +46,45 @@ mix deps.get
 ## Run the Code
 
 Open up an `iex` terminal and confirm that each implementation gives you the
-same result:
+same result for a given private key:
 
 ```elixir
 iex -S mix
-iex(1)> BitcoinAddress.Elixir.generate()
+iex(1)> private_key = BitcoinAddress.Secp256k1.generate_private_key()
+"66f08a4c251147c0f9f39881e4b8290bc60f398aa1c5335f60359d1d90d123c7"
+iex(2)> BitcoinAddress.Elixir.generate(private_key)
+Private key: "66f08a4c251147c0f9f39881e4b8290bc60f398aa1c5335f60359d1d90d123c7"
+Public key: "0266321e7bcdf4b912104401202d674954a64679eec11f18e766199f4744bc0b51"
+Bitcoin address: "1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+"1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+iex(3)> BitcoinAddress.Python.generate(private_key)
+Private key: "66f08a4c251147c0f9f39881e4b8290bc60f398aa1c5335f60359d1d90d123c7"
+Public key: "0266321e7bcdf4b912104401202d674954a64679eec11f18e766199f4744bc0b51"
+Bitcoin address: "1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+"1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+iex(4)> BitcoinAddress.CPlusPlus.generate(private_key)
+Private key: "66f08a4c251147c0f9f39881e4b8290bc60f398aa1c5335f60359d1d90d123c7"
+Public key: "0266321e7bcdf4b912104401202d674954a64679eec11f18e766199f4744bc0b51"
+Bitcoin address: "1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+"1FXpStf9Ma2Wxe6QrwjZCHnG9SvwGCEPJf"
+```
+
+For each of the different implementations, rather than create your own private
+key manually, you can:
+
+- get the function to generate one for you, or
+- use a static pre-generated one as a `:test`
+
+```elixir
+iex(5)> BitcoinAddress.Elixir.generate()
+Private key: "d11d04584bd82b6a7b290b86b88070391149ab44a446a49b92c0ac40b80ab430"
+Public key: "027af4aef662ba5aa1fc100105db5160e70b8d05ffd9eda96b3e308a98e0d9c6ce"
+Bitcoin address: "1C14kvagjp1Rvu1PAN5uxija6cR128yEaG"
+"1C14kvagjp1Rvu1PAN5uxija6cR128yEaG"
+iex(6)> BitcoinAddress.Elixir.generate(:test)
 Private key: "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
 Public key: "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
-Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-"1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-iex(2)> BitcoinAddress.Python.generate()
-Private key: "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
-Public key: "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
-Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-"1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-iex(3)> BitcoinAddress.CPlusPlus.generate()
-Private key: "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
-Public key: "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
-Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+Bitcoin address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
 "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
 ```
 

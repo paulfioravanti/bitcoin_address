@@ -17,7 +17,7 @@ defmodule BitcoinAddress.CPlusPlus do
   ## Parameters
 
     - `private_key`: A string of characters.
-    - `:random`: A flag to indicate that a new private key should be generated.
+    - `:test`: Flag to use a pregenerated private key.
 
   ## Example:
 
@@ -26,15 +26,15 @@ defmodule BitcoinAddress.CPlusPlus do
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
 
   """
-  def generate(private_key \\ Secp256k1.example_private_key())
-  def generate(:random), do: generate(Secp256k1.generate_private_key())
+  def generate(private_key \\ Secp256k1.generate_private_key())
+  def generate(:test), do: generate(Secp256k1.example_private_key())
   def generate(private_key) do
     with {:ok, pid} <- Cure.start_link(@cpp_executable),
          bitcoin_public_key <- create_bitcoin_public_key(pid, private_key),
          bitcoin_address <- create_bitcoin_address(pid, bitcoin_public_key) do
       IO.puts("Private key: #{inspect(private_key)}")
       IO.puts("Public key: #{inspect(bitcoin_public_key)}")
-      IO.puts("Address: #{inspect(bitcoin_address)}")
+      IO.puts("Bitcoin address: #{inspect(bitcoin_address)}")
       :ok = Cure.stop(pid)
       bitcoin_address
     end

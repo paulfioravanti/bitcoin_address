@@ -12,7 +12,7 @@ defmodule BitcoinAddress.Elixir do
   ## Parameters
 
     - `private_key`: A string of characters.
-    - `:random`: A flag to indicate that a new private key should be generated.
+    - `:test`: Flag to use a pregenerated private key.
 
   ## Example:
 
@@ -21,14 +21,14 @@ defmodule BitcoinAddress.Elixir do
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
 
   """
-  def generate(private_key \\ Secp256k1.example_private_key())
-  def generate(:random), do: generate(Secp256k1.generate_private_key())
+  def generate(private_key \\ Secp256k1.generate_private_key())
+  def generate(:test), do: generate(Secp256k1.example_private_key())
   def generate(private_key) do
     with bitcoin_public_key <- Secp256k1.bitcoin_public_key(private_key),
          bitcoin_address <- create_bitcoin_address(bitcoin_public_key) do
       IO.puts("Private key: #{inspect(private_key)}")
       IO.puts("Public key: #{inspect(bitcoin_public_key)}")
-      IO.puts("Address: #{inspect(bitcoin_address)}")
+      IO.puts("Bitcoin address: #{inspect(bitcoin_address)}")
       bitcoin_address
     end
   end
