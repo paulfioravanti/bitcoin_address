@@ -19,10 +19,10 @@ defmodule BitcoinAddress.Elixir do
       iex> private_key = BitcoinAddress.Secp256k1.example_private_key
       iex> BitcoinAddress.Elixir.generate(private_key)
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-
   """
   def generate(private_key \\ Secp256k1.generate_private_key())
   def generate(:test), do: generate(Secp256k1.example_private_key())
+
   def generate(private_key) do
     with bitcoin_public_key <- Secp256k1.bitcoin_public_key(private_key),
          bitcoin_address <- create_bitcoin_address(bitcoin_public_key) do

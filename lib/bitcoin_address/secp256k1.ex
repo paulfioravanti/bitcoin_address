@@ -34,12 +34,17 @@ defmodule BitcoinAddress.Secp256k1 do
     @example_private_key
   end
 
+  @doc """
+  Generates a random private key that has a decimal value within the confines
+  of the Secp256k1 Elliptic curve.
+  """
   def generate_private_key do
     with hex_secret <- random_secret(),
          dec_secret <- String.to_integer(hex_secret, @hex) do
       case dec_secret do
         n when n in 0..@n ->
           hex_secret
+
         _out_of_range ->
           generate_private_key()
       end
@@ -73,23 +78,24 @@ defmodule BitcoinAddress.Secp256k1 do
   defp public_key_from_private_key(private_key) do
     private_key
     |> String.to_integer(@hex)
-    |> (fn(int) -> :crypto.generate_key(:ecdh, :secp256k1, int) end).()
+    |> (fn int -> :crypto.generate_key(:ecdh, :secp256k1, int) end).()
   end
 
   # Elliptic Curve point
   defp ec_point_from_public_key(public_key) do
-    <<_prefix :: size(8), x :: size(256), y :: size(256)>> = public_key
+    <<_prefix::size(8), x::size(256), y::size(256)>> = public_key
     {x, y}
   end
 
   defp bitcoin_public_key_from_ec_point({x, y}) do
-    <<public_key_prefix(y) :: size(8), x :: size(256)>>
+    <<public_key_prefix(y)::size(8), x::size(256)>>
     |> Base.encode16(case: :lower)
   end
 
   defp public_key_prefix(y) when (y &&& 1) == 1 do
     @greater_than_curve_midpoint_prefix
   end
+
   defp public_key_prefix(_y) do
     @less_than_curve_midpoint_prefix
   end

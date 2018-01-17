@@ -24,10 +24,10 @@ defmodule BitcoinAddress.CPlusPlus do
       iex> private_key = BitcoinAddress.Secp256k1.example_private_key
       iex> BitcoinAddress.CPlusPlus.generate(private_key)
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-
   """
   def generate(private_key \\ Secp256k1.generate_private_key())
   def generate(:test), do: generate(Secp256k1.example_private_key())
+
   def generate(private_key) do
     with {:ok, pid} <- Cure.start_link(@cpp_executable),
          bitcoin_public_key <- create_bitcoin_public_key(pid, private_key),
@@ -41,15 +41,16 @@ defmodule BitcoinAddress.CPlusPlus do
   end
 
   defp create_bitcoin_public_key(pid, private_key) do
-    call_cpp(pid, <<@generate_public_key, private_key :: binary>>)
+    call_cpp(pid, <<@generate_public_key, private_key::binary>>)
   end
 
   defp create_bitcoin_address(pid, bitcoin_public_key) do
-    call_cpp(pid, <<@create_bitcoin_address, bitcoin_public_key :: binary>>)
+    call_cpp(pid, <<@create_bitcoin_address, bitcoin_public_key::binary>>)
   end
 
   defp call_cpp(pid, data) do
     Cure.send_data(pid, data, :once)
+
     receive do
       {:cure_data, response} ->
         response
