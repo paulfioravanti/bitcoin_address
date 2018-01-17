@@ -35,9 +35,9 @@ if Mix.env == :dev do
   tasks: [
     # `compile.cure` can be commented out once the C++ executables have been
     # created and it's unlikely that modifications to any C++ code will be done.
-    "compile.cure",
+    # "compile.cure",
     "test",
-    "dogma",
+    # "dogma", # currently not working...?
     "credo --strict"
   ]
 end
