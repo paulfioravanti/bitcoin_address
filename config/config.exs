@@ -28,16 +28,17 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
-if Mix.env == :dev do
+if Mix.env() == :dev do
   # Configures automated testing/linting
   config :mix_test_watch,
-  clear: true,
-  tasks: [
-    # `compile.cure` can be commented out once the C++ executables have been
-    # created and it's unlikely that modifications to any C++ code will be done.
-    # "compile.cure",
-    "test",
-    # "dogma", # currently not working...?
-    "credo --strict"
-  ]
+    clear: true,
+    tasks: [
+      # `compile.cure` can be commented out once the C++ executables have been
+      # created and it's unlikely that modifications to any C++ code will be done.
+      # "compile.cure",
+      "format",
+      "test",
+      # "dogma", # currently not working...?
+      "credo --strict"
+    ]
 end
