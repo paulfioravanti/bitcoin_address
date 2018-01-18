@@ -19,10 +19,7 @@ def create_bitcoin_public_key(private_key):
   decoded_private_key = bitcoin.decode_privkey(private_key, "hex")
   public_key = bitcoin.fast_multiply(bitcoin.G, decoded_private_key)
   (public_key_x, public_key_y) = public_key
-  if (public_key_y % 2) == 0:
-    compressed_prefix = "02"
-  else:
-    compressed_prefix = "03"
+  compressed_prefix = "02" if (public_key_y % 2) == 0 else "03"
   # 64 represents the minimum length of the string required returned back.
   # Zeros will be prepended to a string until it meets the length requirement.
   # Less characters than 64 will result in an invalid public key.
