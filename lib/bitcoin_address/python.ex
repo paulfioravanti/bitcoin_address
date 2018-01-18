@@ -6,7 +6,9 @@ defmodule BitcoinAddress.Python do
   use Export.Python
   alias BitcoinAddress.Secp256k1
 
-  @python_src :bitcoin_address |> :code.priv_dir() |> Path.basename()
+  @python_src :bitcoin_address
+              |> :code.priv_dir()
+              |> Path.basename()
   @python_file "bitcoin_address"
 
   @doc """
