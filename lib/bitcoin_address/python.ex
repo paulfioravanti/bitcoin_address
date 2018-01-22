@@ -6,9 +6,9 @@ defmodule BitcoinAddress.Python do
   use Export.Python
   alias BitcoinAddress.Secp256k1
 
-  @python_src :bitcoin_address
-              |> :code.priv_dir()
-              |> Path.basename()
+  @python_path :bitcoin_address
+               |> :code.priv_dir()
+               |> Path.basename()
   @python_file "bitcoin_address"
 
   @doc """
@@ -29,7 +29,7 @@ defmodule BitcoinAddress.Python do
   def generate(:test), do: generate(Secp256k1.example_private_key())
 
   def generate(private_key) do
-    with {:ok, pid} <- Python.start(python_path: @python_src),
+    with {:ok, pid} <- Python.start(python_path: @python_path),
          bitcoin_public_key <- create_bitcoin_public_key(pid, private_key),
          bitcoin_address <- create_bitcoin_address(pid, bitcoin_public_key) do
       IO.puts("Private key: #{inspect(private_key)}")
