@@ -36,7 +36,10 @@ if Mix.env() == :dev do
       # `compile.cure` can be commented out once the C++ executables have been
       # created and it's unlikely that modifications to any C++ code will be done.
       # "compile.cure",
-      "format",
+      # Check if the file after formatting has the same AST. If the ASTs are not
+      # equivalent, it is a bug in the code formatter. This option is
+      # recommended if you are automatically formatting files.
+      "format --check-equivalent",
       "test",
       # "dogma", # currently not working...?
       "credo --strict"
