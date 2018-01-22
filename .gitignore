@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore asdf files
-.tool-versions*
+*.tool-versions*
 
 # Ignore C++ executables
 /priv/*
