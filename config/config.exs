@@ -42,7 +42,7 @@ if Mix.env() == :dev do
       # "format --check-equivalent",
       "test",
       # currently not working...?
-      "dogma",
+      # "dogma",
       "credo --strict"
     ]
 end
