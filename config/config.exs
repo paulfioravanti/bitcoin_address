@@ -33,15 +33,16 @@ if Mix.env() == :dev do
   config :mix_test_watch,
     clear: true,
     tasks: [
-      # `compile.cure` can be commented out once the C++ executables have been
-      # created and it's unlikely that modifications to any C++ code will be done.
+      # NOTE: `compile.cure` can be commented out once the C++ executables have
+      # been created and it's unlikely that modifications to any C++ code will
+      # be done.
       # "compile.cure",
-      # Check if the file after formatting has the same AST. If the ASTs are not
-      # equivalent, it is a bug in the code formatter. This option is
-      # recommended if you are automatically formatting files.
-      "format --check-equivalent",
+      # NOTE: Leave this commented out if editor is performing formatting on
+      # every save.
+      # "format --check-equivalent",
       "test",
-      # "dogma", # currently not working...?
+      # currently not working...?
+      "dogma",
       "credo --strict"
     ]
 end
