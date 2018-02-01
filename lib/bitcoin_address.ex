@@ -10,8 +10,8 @@ defmodule BitcoinAddress do
   ## Example:
 
       iex> address = BitcoinAddress.generate()
-      iex> base58pattern = ~r/\\A[1-9A-HJ-NP-Za-km-z]{26,35}\\z/
-      iex> address =~ base58pattern
+      iex> base58_pattern = ~r/\\A[1-9A-HJ-NP-Za-km-z]{26,35}\\z/
+      iex> address =~ base58_pattern
       true
   """
   defdelegate generate, to: BitcoinAddress.Elixir

@@ -6,8 +6,8 @@ defmodule BitcoinAddressTest do
 
   @output_format ~r"""
   \A\
-  Private key:\s"[0-9a-z]{64}"
-  Public key:\s"[0-9a-z]{66}"
+  Private key:\s"[0-9a-f]{64}"
+  Public key:\s"[0-9a-f]{66}"
   Bitcoin address:\s"[1-9A-HJ-NP-Za-km-z]{26,35}"
   \z\
   """

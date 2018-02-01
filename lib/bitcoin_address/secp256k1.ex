@@ -27,18 +27,19 @@ defmodule BitcoinAddress.Secp256k1 do
   038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
   """
 
-  @doc """
-  Guard to determine whether a generated key is within the Elliptic curve.
-  """
+  # Guard to determine whether a generated key is within the Elliptic curve.
   defguardp valid_key?(key) when key in 0..@n
 
-  @doc """
-  Guard to determine whether a given integer is even or not.
-  """
+  # Guard to determine whether a given integer is even or not.
   defguardp is_even?(int) when (int &&& 1) == 1
 
   @doc """
-  Function wrapper around the module attribute for an example private key
+  Function wrapper around the module attribute for an example private key.
+
+  ## Example:
+
+      iex> BitcoinAddress.Secp256k1.example_private_key
+      "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
   """
   def example_private_key do
     @example_private_key
@@ -47,6 +48,13 @@ defmodule BitcoinAddress.Secp256k1 do
   @doc """
   Generates a random private key that has a decimal value within the confines
   of the Secp256k1 Elliptic curve.
+
+  ## Example:
+
+      iex> private_key = BitcoinAddress.Secp256k1.generate_private_key
+      iex> private_key_pattern = ~r/\\A[0-9a-f]{64}\\z/
+      iex> private_key =~ private_key_pattern
+      true
   """
   def generate_private_key do
     with hex_secret <- random_secret(),
@@ -68,6 +76,14 @@ defmodule BitcoinAddress.Secp256k1 do
   ## Parameters
 
     - `private_key`: A string of characters.
+
+  ## Example:
+
+      iex> private_key = BitcoinAddress.Secp256k1.generate_private_key
+      iex> public_key = BitcoinAddress.Secp256k1.bitcoin_public_key(private_key)
+      iex> public_key_pattern = ~r/\\A[0-9a-f]{66}\\z/
+      iex> public_key =~ public_key_pattern
+      true
   """
   def bitcoin_public_key(private_key) do
     with {public_key, _private_key} <- public_key_from_private_key(private_key),

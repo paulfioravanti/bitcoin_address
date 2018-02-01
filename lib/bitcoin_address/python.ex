@@ -19,7 +19,7 @@ defmodule BitcoinAddress.Python do
     - `private_key`: A string of characters.
     - `:test`: Flag to use a pregenerated private key.
 
-  ## Example:
+  ## Examples:
 
       iex> private_key = BitcoinAddress.Secp256k1.example_private_key
       iex> BitcoinAddress.Python.generate(private_key)

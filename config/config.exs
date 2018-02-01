@@ -43,6 +43,7 @@ if Mix.env() == :dev do
       "test",
       # currently not working...?
       # "dogma",
-      "credo --strict"
+      "credo --strict",
+      "docs"
     ]
 end
