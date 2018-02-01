@@ -24,6 +24,9 @@ defmodule BitcoinAddress.CPlusPlus do
       iex> private_key = BitcoinAddress.Secp256k1.example_private_key
       iex> BitcoinAddress.CPlusPlus.generate(private_key)
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+
+      iex> BitcoinAddress.CPlusPlus.generate(:test)
+      "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
   """
   def generate(private_key \\ Secp256k1.generate_private_key())
   def generate(:test), do: generate(Secp256k1.example_private_key())
