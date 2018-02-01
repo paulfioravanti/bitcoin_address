@@ -27,6 +27,9 @@ defmodule BitcoinAddress.Secp256k1 do
   038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
   """
 
+  defguardp valid_key?(key) when key in 0..@n
+  defguardp is_even?(y) when (y &&& 1) == 1
+
   @doc """
   Function wrapper around the module attribute for an example private key
   """
@@ -42,7 +45,7 @@ defmodule BitcoinAddress.Secp256k1 do
     with hex_secret <- random_secret(),
          dec_secret <- String.to_integer(hex_secret, @hex) do
       case dec_secret do
-        n when n in 0..@n ->
+        n when valid_key?(n) ->
           hex_secret
 
         _out_of_range ->
@@ -92,7 +95,7 @@ defmodule BitcoinAddress.Secp256k1 do
     |> Base.encode16(case: :lower)
   end
 
-  defp public_key_prefix(y) when (y &&& 1) == 1 do
+  defp public_key_prefix(y) when is_even?(y) do
     @greater_than_curve_midpoint_prefix
   end
 
