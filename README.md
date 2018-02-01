@@ -107,6 +107,15 @@ changes are made:
 mix test.watch
 ```
 
+## Generate Documentation
+
+This project uses [ExDoc][] to generate HTML documentation.
+Generate the documentation with the following command:
+
+```sh
+mix docs
+```
+
 ## Helpful Resources
 
 ### Code
@@ -137,6 +146,7 @@ Elixir communicating with Python and C++.
 [Cure]: https://github.com/luc-tielen/Cure
 [Dogma]: https://github.com/lpil/dogma
 [Elixir]: https://github.com/elixir-lang/elixir
+[ExDoc]: https://github.com/elixir-lang/ex_doc
 [Export]: https://github.com/fazibear/export
 [Homebrew]: https://github.com/Homebrew/brew
 [`libbitcoin`]: https://github.com/libbitcoin/libbitcoin
