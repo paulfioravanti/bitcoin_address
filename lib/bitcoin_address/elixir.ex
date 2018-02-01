@@ -14,10 +14,13 @@ defmodule BitcoinAddress.Elixir do
     - `private_key`: A string of characters.
     - `:test`: Flag to use a pregenerated private key.
 
-  ## Example:
+  ## Examples:
 
       iex> private_key = BitcoinAddress.Secp256k1.example_private_key
       iex> BitcoinAddress.Elixir.generate(private_key)
+      "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+
+      iex> BitcoinAddress.Elixir.generate(:test)
       "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
   """
   def generate(private_key \\ Secp256k1.generate_private_key())

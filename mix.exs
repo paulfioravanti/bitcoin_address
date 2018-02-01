@@ -28,6 +28,8 @@ defmodule BitcoinAddress.Mixfile do
       {:cure, "~> 0.5.0"},
       # A code style linter for Elixir, powered by shame
       {:dogma, "~> 0.1", only: [:dev, :test]},
+      # ExDoc produces HTML and EPUB documentation for Elixir projects
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       # Erlport wrapper for Elixir to interface with Python code
       {:export, "~> 0.1.0"},
       # Automatically run your Elixir project's tests each time you save a file

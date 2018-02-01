@@ -27,8 +27,15 @@ defmodule BitcoinAddress.Secp256k1 do
   038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
   """
 
+  @doc """
+  Guard to determine whether a generated key is within the Elliptic curve.
+  """
   defguardp valid_key?(key) when key in 0..@n
-  defguardp is_even?(y) when (y &&& 1) == 1
+
+  @doc """
+  Guard to determine whether a given integer is even or not.
+  """
+  defguardp is_even?(int) when (int &&& 1) == 1
 
   @doc """
   Function wrapper around the module attribute for an example private key
