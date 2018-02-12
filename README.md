@@ -29,10 +29,12 @@ Install brew packages (includes the C++ libraries):
 brew install bitcoin gcc [python]
 ```
 
-Install Python packages:
+Since Pybitcointools is not maintained any more, in order to get things working,
+the library has to be installed using `pip` at the specific commit hash before
+the entire repository was deleted:
 
 ```sh
-pip install bitcoin
+pip install git+https://github.com/vbuterin/pybitcointools.git@aeb0a2bbb8bbfe421432d776c649650eaeb882a5
 ```
 
 ### Repository
