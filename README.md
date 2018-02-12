@@ -134,6 +134,11 @@ mix docs
 These are blog posts I wrote documenting the things I needed to do to get
 Elixir communicating with Python and C++.
 
+### Presentation
+
+I did a talk about this project at the [Elixir Sydney Meetup][] on
+[7 Feb 2018][elixir-sydney-20180207] ([slide deck][speakerdeck]).
+
 ## Social
 
 [![Contact][twitter-badge]][twitter-url]
@@ -148,6 +153,8 @@ Elixir communicating with Python and C++.
 [Cure]: https://github.com/luc-tielen/Cure
 [Dogma]: https://github.com/lpil/dogma
 [Elixir]: https://github.com/elixir-lang/elixir
+[Elixir Sydney Meetup]: https://www.meetup.com/sydney-ex
+[elixir-sydney-20180207]: https://www.meetup.com/sydney-ex/events/246392760/
 [ExDoc]: https://github.com/elixir-lang/ex_doc
 [Export]: https://github.com/fazibear/export
 [Homebrew]: https://github.com/Homebrew/brew
@@ -158,6 +165,7 @@ Elixir communicating with Python and C++.
 [private key]: https://en.bitcoin.it/wiki/Private_key
 [`pybitcointools`]: https://github.com/vbuterin/pybitcointools
 [Python]: https://www.python.org/
+[speakerdeck]: https://speakerdeck.com/paulfioravanti/get-paid-in-bitcoin
 [stackoverflow-badge]: http://stackoverflow.com/users/flair/567863.png
 [stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
 [twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
